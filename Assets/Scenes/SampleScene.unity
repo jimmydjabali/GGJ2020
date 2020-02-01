@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ede66604c80223dc8e4dc27fc6825a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idle: {fileID: 21300000, guid: 1ba7d70c33711fe14be6f1d18bc1d54c, type: 3}
+  walk1: {fileID: 21300000, guid: ac289f7b3a22451c19d51140ef8bfe2c, type: 3}
+  walk2: {fileID: 21300000, guid: bbd9b79bd01fa59d2a0cb27517aacb8e, type: 3}
 --- !u!1 &213702743
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,10 +59,5 @@ public class Player2 : MonoBehaviour
         }
         
         GetComponent<Rigidbody2D>().velocity = Xdir + Ydir;
-
-        //if (Xdir == Vector3.zero && Ydir == Vector3.zero)
-        //    playerSprite.setMoving(false);
-        //else
-        //    playerSprite.setMoving(true);
     }
 }
