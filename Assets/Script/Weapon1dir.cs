@@ -19,12 +19,17 @@ public class Weapon1dir : MonoBehaviour
     float dir()
     {
         double angle;
-
-        angle = -Atan2(aimposition.x - 2, aimposition.y + 3.8);
-
+        angle = Mathf.Asin(aimposition.x / pyth(aimposition.x - 0.6f, aimposition.y +1.679f));
+        angle = angle * Mathf.Rad2Deg;
         return ToSingle(angle);
     }
+    float pyth(float x, float y)
+    {
+        x = Mathf.Pow(x,2);
+        y = Mathf.Pow(y, 2);
 
+        return Mathf.Sqrt(x + y);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +41,7 @@ public class Weapon1dir : MonoBehaviour
     void Update()
     {
         aimposition = Aim.transform.position;
-        //transform.rotation = new Quaternion(0.0f, 0.0f, dir(),1);
-        transform.LookAt(Aim.transform);
+        transform.rotation = Quaternion.Euler( new Vector3 (0.0f, 0.0f, -dir()));
         if (Input.GetAxis("Left fire") > 0 && fire == 0 & overheating == false)
         {
             fire = rateoffire;
