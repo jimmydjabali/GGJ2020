@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Weapon1
   - Weapon2
+  - SuperWeapon1
+  - SuperWeapon2
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class Weapon2dir : MonoBehaviour
     public int rateoffire;
     public bool overheating;
     public Rigidbody2D Drugs;
+    public Rigidbody2D Superdrugs;
 
     private Vector3 aimposition;
     private int fire;
@@ -43,6 +44,14 @@ public class Weapon2dir : MonoBehaviour
             Rigidbody2D projectile = Instantiate(Drugs, transform.position, transform.rotation);
             projectile.gameObject.tag = "Weapon2";
         }
+        if (Input.GetButtonDown("Right supercharge") && fire == 0 && overheating == false)
+        {
+            fire = rateoffire * 2;
+            overheatingtemp = overheatingtemp + 200;
+            Rigidbody2D projectile = Instantiate(Superdrugs, transform.position, transform.rotation);
+            projectile.gameObject.tag = "SuperWeapon2";
+            Debug.Log("Megababoon !");
+        }
         else if (fire > 0)
         {
             fire = fire - 1;
@@ -55,6 +64,9 @@ public class Weapon2dir : MonoBehaviour
         {
             overheating = false;
         }
-        overheatingtemp = overheatingtemp - 1;
+        if (overheatingtemp > 0)
+        {
+            overheatingtemp = overheatingtemp - 1;
+        }
     }
 }
