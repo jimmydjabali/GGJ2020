@@ -11,8 +11,7 @@ public class Player2 : MonoBehaviour
     public bool wallright;
     public bool wallleft;
     public float speed;
-    public GameObject player;
-    public GameObject playerSprite;
+    public Rotation playerSprite;
 
     private Vector3 Xdir;
     private Vector3 Ydir;
@@ -31,31 +30,34 @@ public class Player2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (wallright == false & Input.GetAxis("Player Xaxis") > 0)
-        {
-            Xdir = transform.right * speed * Input.GetAxis("Player Xaxis");
-        }
-        else if (wallleft == false & Input.GetAxis("Player Xaxis") < 0)
-        {
-            Xdir = transform.right * speed * Input.GetAxis("Player Xaxis");
-        }
-        else if (Input.GetAxis("Player Xaxis") == 0)
-        {
-            Xdir = transform.right * 0;
-        }
-        if (walltop == false & Input.GetAxis("Player Yaxis") > 0)
-        {
-            Ydir = transform.up * speed * -Input.GetAxis("Player Yaxis");
-        }
-        else if (wallbotom == false & Input.GetAxis("Player Yaxis") < 0)
-        {
-            Ydir = transform.up * speed * -Input.GetAxis("Player Yaxis");
-        }
-        else if (Input.GetAxis("Player Yaxis") == 0)
-        {
-            Ydir = transform.up * 0;
-        }
+        float xAxis = Input.GetAxis("Player Xaxis");
+        float yAxis = Input.GetAxis("Player Yaxis");
 
-        player.GetComponent<Rigidbody2D>().velocity = Xdir + Ydir;
+        if (wallright == false && xAxis < 0)
+        {
+            Xdir = transform.up * speed * xAxis;
+        }
+        else if (wallleft == false && xAxis > 0)
+        {
+            Xdir = transform.up * speed * xAxis;
+        }
+        else if (xAxis == 0)
+        {
+            Xdir = transform.up * 0;
+        }
+        if (walltop == false && yAxis < 0)
+        {
+            Ydir = transform.right * speed * yAxis;
+        }
+        else if (wallbotom == false && yAxis > 0)
+        {
+            Ydir = transform.right * speed * yAxis;
+        }
+        else if (yAxis == 0)
+        {
+            Ydir = transform.right * 0;
+        }
+        
+        GetComponent<Rigidbody2D>().velocity = Xdir + Ydir;
     }
 }
