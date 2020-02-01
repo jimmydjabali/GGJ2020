@@ -27,23 +27,23 @@ public class Aim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Aim Yaxis") < 0 & transform.position.y > -1.6)
+        if (Input.GetAxis("Aim Yaxis") < 0 && transform.position.y > -1.6)
         {
             //movementspeed = Abs(movementspeed) * -1;
             transform.position = transform.position + new Vector3(0, Time.deltaTime * movementspeed * Input.GetAxis("Aim Yaxis"), 0);
         }
-        else if (Input.GetAxis("Aim Yaxis") > 0 & transform.position.y < 5.0)
+        else if (Input.GetAxis("Aim Yaxis") > 0 && transform.position.y < 5.0)
         {
             //movementspeed = Abs(movementspeed);
             transform.position = transform.position + new Vector3(0, Time.deltaTime * movementspeed * Input.GetAxis("Aim Yaxis"), 0);
         }
 
-        if (Input.GetAxis("Aim Xaxis") < 0 & transform.position.x > 0.2)
+        if (Input.GetAxis("Aim Xaxis") < 0 && transform.position.x > 0.2)
         {
             //movementspeed = Abs(movementspeed) * -1;
             transform.position = transform.position + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim Xaxis"), 0, 0);
         }
-        else if (Input.GetAxis("Aim Xaxis") > 0 & transform.position.x < 9.5)
+        else if (Input.GetAxis("Aim Xaxis") > 0 && transform.position.x < 9.5)
         {
             //movementspeed = Abs(movementspeed);
             transform.position = transform.position + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim Xaxis"), 0, 0);
