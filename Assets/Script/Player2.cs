@@ -57,7 +57,6 @@ public class Player2 : MonoBehaviour
         {
             Ydir = transform.right * 0;
         }
-        
         GetComponent<Rigidbody2D>().velocity = Xdir + Ydir;
     }
 }

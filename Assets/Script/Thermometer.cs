@@ -18,15 +18,8 @@ public class Thermometer : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        setLevel(3);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void setLevel(int newLevel)
     {
         level = newLevel;
