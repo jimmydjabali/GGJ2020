@@ -19,7 +19,6 @@ public class Weapon1dir : MonoBehaviour
     float dir()
     {
         double angle;
-        angle = 0;
 
         angle = -Atan2(aimposition.x - 2, aimposition.y + 3.8);
 
@@ -37,13 +36,14 @@ public class Weapon1dir : MonoBehaviour
     void Update()
     {
         aimposition = Aim.transform.position;
-        transform.rotation = new Quaternion(0.0f, 0.0f, dir(),1);
-        if (Input.GetAxis("Left fire") > 0 & fire == 0 & overheating == false)
+        //transform.rotation = new Quaternion(0.0f, 0.0f, dir(),1);
+        transform.LookAt(Aim.transform);
+        if (Input.GetAxis("Left fire") > 0 && fire == 0 & overheating == false)
         {
             fire = rateoffire;
             overheatingtemp = overheatingtemp + 100;
-            Rigidbody2D p = Instantiate(Drugs, transform.position, transform.rotation);
-            Debug.Log("eugcre");
+            Rigidbody2D projectile = Instantiate(Drugs, transform.position, transform.rotation);
+            projectile.gameObject.tag = "Weapon1";
 
         }
         else if (fire > 0)

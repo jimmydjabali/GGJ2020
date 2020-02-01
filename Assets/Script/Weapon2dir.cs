@@ -9,6 +9,7 @@ public class Weapon2dir : MonoBehaviour
     public GameObject Aim;
     public int rateoffire;
     public bool overheating;
+    public Rigidbody2D Drugs;
 
     private Vector3 aimposition;
     private int fire;
@@ -17,7 +18,6 @@ public class Weapon2dir : MonoBehaviour
     float dir()
     {
         double angle;
-        angle = 0;
 
         angle = -Atan2(aimposition.x - 8, aimposition.y + 3.8);
 
@@ -34,12 +34,14 @@ public class Weapon2dir : MonoBehaviour
     void Update()
     {
         aimposition = Aim.transform.position;
+        
         transform.rotation = new Quaternion(0.0f, 0.0f, dir(), 1);
-        if (Input.GetAxis("Right fire") > 0 & fire == 0 & overheating == false)
+        if (Input.GetAxis("Right fire") > 0 && fire == 0 & overheating == false)
         {
-            Debug.Log("droite");
             fire = rateoffire;
             overheatingtemp = overheatingtemp + 100;
+            Rigidbody2D projectile = Instantiate(Drugs, transform.position, transform.rotation);
+            projectile.gameObject.tag = "Weapon2";
         }
         else if (fire > 0)
         {
