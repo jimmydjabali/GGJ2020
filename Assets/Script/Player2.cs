@@ -11,7 +11,7 @@ public class Player2 : MonoBehaviour
     public bool wallright;
     public bool wallleft;
     public float speed;
-    public GameObject player;
+    public Rotation playerSprite;
 
     private Vector3 Xdir;
     private Vector3 Ydir;
@@ -30,79 +30,39 @@ public class Player2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float xAxis = Input.GetAxis("Player Xaxis");
+        float yAxis = Input.GetAxis("Player Yaxis");
 
-        if(wallright == false & Input.GetAxis("Player Xaxis") > 0)
+        if (wallright == false && xAxis < 0)
         {
-            Xdir = transform.right * speed * Input.GetAxis("Player Xaxis");
+            Xdir = transform.up * speed * xAxis;
         }
-        else if (wallleft == false & Input.GetAxis("Player Xaxis") < 0)
+        else if (wallleft == false && xAxis > 0)
         {
-            Xdir = transform.right * speed * Input.GetAxis("Player Xaxis");
+            Xdir = transform.up * speed * xAxis;
         }
-        else if (Input.GetAxis("Player Xaxis") == 0)
+        else if (xAxis == 0)
         {
-            Xdir = transform.right * 0;
+            Xdir = transform.up * 0;
         }
-
-        if (walltop == false & Input.GetAxis("Player Yaxis") > 0)
+        if (walltop == false && yAxis < 0)
         {
-            Ydir = transform.up * speed * -Input.GetAxis("Player Yaxis");
+            Ydir = transform.right * speed * yAxis;
         }
-        else if (wallbotom == false & Input.GetAxis("Player Yaxis") < 0)
+        else if (wallbotom == false && yAxis > 0)
         {
-            Ydir = transform.up * speed * -Input.GetAxis("Player Yaxis");
+            Ydir = transform.right * speed * yAxis;
         }
-        else if (Input.GetAxis("Player Yaxis") == 0)
+        else if (yAxis == 0)
         {
-            Ydir = transform.up * 0;
+            Ydir = transform.right * 0;
         }
-        player.GetComponent<Rigidbody2D>().velocity = Xdir + Ydir;
         
-        if(Input.GetAxis("Sight Yaxis") > 0 & Input.GetAxis("Sight Xaxis") > 0)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, RadtoDeg(ToSingle(Acos(Input.GetAxis("Sight Yaxis") / Input.GetAxis("Sight Xaxis")))), 1);
-        }
-        else if (Input.GetAxis("Sight Yaxis") < 0 & Input.GetAxis("Sight Xaxis") > 0)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 90.0f + RadtoDeg(ToSingle(Acos(-Input.GetAxis("Sight Yaxis") / Input.GetAxis("Sight Xaxis")))), 1);
-        }
-        else if (Input.GetAxis("Sight Yaxis") < 0 & Input.GetAxis("Sight Xaxis") < 0)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 180.0f + RadtoDeg(ToSingle(Acos(-Input.GetAxis("Sight Yaxis") / -Input.GetAxis("Sight Xaxis")))), 1);
-        }
-        else if (Input.GetAxis("Sight Yaxis") > 0 & Input.GetAxis("Sight Xaxis") < 0)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 270.0f + RadtoDeg(ToSingle(Acos(Input.GetAxis("Sight Yaxis") / -Input.GetAxis("Sight Xaxis")))), 1);
-        }
+        GetComponent<Rigidbody2D>().velocity = Xdir + Ydir;
 
-        else if (Input.GetAxis("Sight Yaxis") == 0 & Input.GetAxis("Sight Xaxis") == 1 )
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 90.0f, 1.0f);
-        }
-        else if (Input.GetAxis("Sight Yaxis") == 0 & Input.GetAxis("Sight Xaxis") == -1)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 270.0f, 1.0f);
-        }
-        else if (Input.GetAxis("Sight Xaxis") == 0 & Input.GetAxis("Sight Yaxis") == 1)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
-        }
-        else if (Input.GetAxis("Sight Xaxis") == 0 & Input.GetAxis("Sight Yaxis") == -1)
-        {
-            transform.rotation = new Quaternion(0.0f, 0.0f, 180.0f, 1.0f);
-        }
-
-        //if (Input.GetAxis("Sight Xaxis") < 0 && wallleft == false)
-        //{
-        //    transform.position = transform.position + new Vector3(Time.deltaTime * speed * Input.GetAxis("Sight Xaxis"), 0.0f, 0.0f);
-        //}
-        //if (Input.GetAxis("Sight Yaxis") > 0 && walltop == false)
-        //{
-        //    transform.position = transform.position + new Vector3(0.0f, Time.deltaTime * speed * Input.GetAxis("Sight Yaxis"), 0.0f);
-        //}
-        //if (Input.GetAxis("Sight Yaxis") < 0 && wallbotom == false)
-        //{
-        //    transform.position = transform.position + new Vector3(0.0f, Time.deltaTime * speed * Input.GetAxis("Sight Yaxis"), 0.0f);
-        //}
+        //if (Xdir == Vector3.zero && Ydir == Vector3.zero)
+        //    playerSprite.setMoving(false);
+        //else
+        //    playerSprite.setMoving(true);
     }
 }
