@@ -9,6 +9,8 @@ public class Events : MonoBehaviour
 
     public Transform fireObject;
 
+    public GameObject ennemy;
+
     public int fireState = 0;
 
     private List<Vector3> fireEventPositions = new List<Vector3>();
@@ -33,13 +35,13 @@ public class Events : MonoBehaviour
 
         callEvent("FireEvent");
     }
-    
+
     public void DeleteEvent(Vector3 position)
     {
         currentFireEvents.Remove(fireEventPositions.IndexOf(position));
         fireState -= 1;
     }
-    
+
     void callEvent(string functionName)
     {
         float time = Random.Range(minEventTime, maxEventTime);
@@ -49,7 +51,8 @@ public class Events : MonoBehaviour
     int pickRandomPosition(List<Vector3> positions, List<int> currentEvents)
     {
         int randomPosition = 0;
-        do {
+        do
+        {
             randomPosition = Random.Range(0, positions.Count);
         } while (currentFireEvents.Contains(randomPosition));
         currentEvents.Add(randomPosition);
@@ -59,10 +62,10 @@ public class Events : MonoBehaviour
     void FireEvent()
     {
         callEvent("FireEvent");
-        Debug.Log(fireEventPositions.Count);
         if (currentFireEvents.Count >= fireEventPositions.Count) return;
         int randomPosition = pickRandomPosition(fireEventPositions, currentFireEvents);
         Transform fire = Instantiate(fireObject, transform);
+        Instantiate(ennemy);
         fire.localPosition = fireEventPositions[randomPosition];
         fire.gameObject.SetActive(true);
         fireState = currentFireEvents.Count;
@@ -71,6 +74,6 @@ public class Events : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
