@@ -7,13 +7,33 @@ public class superdrugs : MonoBehaviour
     public GameObject supergellule;
     public float speed;
     public float delay;
+    public bool random_color;
+    public Sprite img1, img2;
 
     private bool destruct = false;
+    private int i = 1;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if (random_color)
+        {
+            i = Random.Range(1, 3);
+            if (i == 1)
+            {
+                supergellule.GetComponent<SpriteRenderer>().sprite = img1;
+            }
+            else if (i == 2)
+            {
+                supergellule.GetComponent<SpriteRenderer>().sprite = img2;
+            }
+            else
+            {
+                supergellule.GetComponent<SpriteRenderer>().sprite = img1;
+            }
+        }
+
         supergellule.GetComponent<Rigidbody2D>().velocity = transform.up * 20;
     }
 
@@ -33,11 +53,11 @@ public class superdrugs : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "Aim1" && gameObject.tag == "SuperWeapon1")
+        if (other.gameObject.tag == "Cible1" && gameObject.tag == "SuperWeapon1")
         {
             destruct = true;
         }
-        if (other.gameObject.name == "Aim2" && gameObject.tag == "SuperWeapon2")
+        if (other.gameObject.tag == "Cible2" && gameObject.tag == "SuperWeapon2")
         {
             destruct = true;
         }

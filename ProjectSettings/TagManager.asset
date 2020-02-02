@@ -8,6 +8,8 @@ TagManager:
   - Weapon2
   - SuperWeapon1
   - SuperWeapon2
+  - Cible1
+  - Cible2
   layers:
   - Default
   - TransparentFX

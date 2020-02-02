@@ -96,8 +96,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gellule: {fileID: 6263735828184665356}
-  speed: 10
+  speed: 5
   delay: 2
+  random_color: 1
+  img1: {fileID: 21300000, guid: 9010191a802f6b8419d3553037910e94, type: 3}
+  img2: {fileID: 21300000, guid: c14d2e162f2ea914a92948cea8f5d16a, type: 3}
+  img3: {fileID: 21300000, guid: bf0d2402edfd1164590e31983a5e2ded, type: 3}
 --- !u!61 &61097706136257312
 BoxCollider2D:
   m_ObjectHideFlags: 0

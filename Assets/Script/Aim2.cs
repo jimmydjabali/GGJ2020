@@ -27,27 +27,25 @@ public class Aim2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Aim2 Yaxis") < 0 && transform.position.y > -1.6)
+        if (Input.GetAxis("Aim2 Yaxis") < 0 && transform.localPosition.y > 1)
         {
             //movementspeed = Abs(movementspeed) * -1;
-            transform.position = transform.position + new Vector3(0, Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Yaxis"), 0);
+            transform.localPosition = transform.localPosition + new Vector3(0, Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Yaxis"), 0);
         }
         else if (Input.GetAxis("Aim2 Yaxis") > 0 && transform.position.y < 5.0)
         {
             //movementspeed = Abs(movementspeed);
-            transform.position = transform.position + new Vector3(0, Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Yaxis"), 0);
+            transform.localPosition = transform.localPosition + new Vector3(0, Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Yaxis"), 0);
         }
-
-        if (Input.GetAxis("Aim2 Xaxis") < 0 && transform.position.x > 0.2)
+        if (Input.GetAxis("Aim2 Xaxis") < 0 && transform.localPosition.x > -8.7)
         {
             //movementspeed = Abs(movementspeed) * -1;
-            transform.position = transform.position + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Xaxis"), 0, 0);
+            transform.localPosition = transform.localPosition + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Xaxis"), 0, 0);
         }
-        else if (Input.GetAxis("Aim2 Xaxis") > 0 && transform.position.x < 9.5)
+        else if (Input.GetAxis("Aim2 Xaxis") > 0 && transform.localPosition.x < -0.8)
         {
             //movementspeed = Abs(movementspeed);
-            transform.position = transform.position + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Xaxis"), 0, 0);
+            transform.localPosition = transform.localPosition + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim2 Xaxis"), 0, 0);
         }
-
     }
 }

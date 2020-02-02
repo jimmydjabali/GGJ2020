@@ -43,7 +43,7 @@ public class Aim : MonoBehaviour
             //movementspeed = Abs(movementspeed) * -1;
             transform.localPosition = transform.localPosition + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim Xaxis"), 0, 0);
         }
-        else if (Input.GetAxis("Aim Xaxis") > 0 && transform.localPosition.x < 8.3)
+        else if (Input.GetAxis("Aim Xaxis") > 0 && transform.localPosition.x < 8.7)
         {
             //movementspeed = Abs(movementspeed);
             transform.localPosition = transform.localPosition + new Vector3(Time.deltaTime * movementspeed * Input.GetAxis("Aim Xaxis"), 0, 0);
