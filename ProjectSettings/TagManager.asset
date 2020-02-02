@@ -10,6 +10,9 @@ TagManager:
   - SuperWeapon2
   - Cible1
   - Cible2
+  - Virus
+  - Kawai
+  - Supervirus
   layers:
   - Default
   - TransparentFX

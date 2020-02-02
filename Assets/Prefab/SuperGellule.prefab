@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supergellule: {fileID: 5944785202490914491}
-  speed: 5
+  speed: 15
   delay: 2
   random_color: 1
   img1: {fileID: 21300000, guid: f0d9e34cced3b3a4fa42f0c5c125cf26, type: 3}
