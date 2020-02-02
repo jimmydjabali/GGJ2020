@@ -356,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 901055923598961919, guid: ffd71d97e5090934a8ed22e79f895059,
         type: 3}
       propertyPath: minEventTime
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 901055923598961919, guid: ffd71d97e5090934a8ed22e79f895059,
         type: 3}
@@ -577,6 +577,8 @@ MonoBehaviour:
   B: {fileID: 21300000, guid: aed7d9fa7837dac9fa5f90c76fec6d89, type: 3}
   X: {fileID: 21300000, guid: b2280ecdb73e62b2dbfc1b813a31e363, type: 3}
   Y: {fileID: 21300000, guid: 59e371ee7152632fb84d8646e607d02a, type: 3}
+  right: {fileID: 21300000, guid: d5cd5da72ae818a59b768f58ff08c911, type: 3}
+  wrong: {fileID: 21300000, guid: 5a18f75c633fdd39b9d8855d7b476302, type: 3}
   qteSize: 5
   time: 1.5
   player2Obj: {fileID: 576721798}
