@@ -12,6 +12,9 @@ public class Weapon2dir : MonoBehaviour
     public Rigidbody2D Drugs;
     public Rigidbody2D Superdrugs;
     public Rigidbody2D Cible;
+    public int nbresuper;
+    public GameObject compteurgellule;
+    public Sprite img1;
 
     private Vector3 aimposition;
     private int fire;
@@ -35,7 +38,11 @@ public class Weapon2dir : MonoBehaviour
     void Update()
     {
         aimposition = Aim.transform.localPosition;
-        
+        if (nbresuper == 0)
+        {
+            compteurgellule.GetComponent<SpriteRenderer>().sprite = img1;
+        }
+
         transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, -dir()));
         if (Input.GetAxis("Right fire") > 0 && fire == 0 & overheating == false)
         {
@@ -46,7 +53,7 @@ public class Weapon2dir : MonoBehaviour
             Rigidbody2D cible = Instantiate(Cible, Aim.transform.position, Aim.transform.rotation);
             cible.gameObject.tag = "Cible2";
         }
-        if (Input.GetButtonDown("Right supercharge") && fire == 0 && overheating == false)
+        if (Input.GetButtonDown("Right supercharge") && fire == 0 && overheating == false && nbresuper > 0)
         {
             fire = rateoffire * 2;
             overheatingtemp = overheatingtemp + 200;
@@ -54,6 +61,7 @@ public class Weapon2dir : MonoBehaviour
             projectile.gameObject.tag = "SuperWeapon2";
             Rigidbody2D cible = Instantiate(Cible, Aim.transform.position, Aim.transform.rotation);
             cible.gameObject.tag = "Cible2";
+            nbresuper = nbresuper - 1;
         }
         else if (fire > 0)
         {
