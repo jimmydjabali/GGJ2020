@@ -103,15 +103,13 @@ MonoBehaviour:
   img4: {fileID: 21300000, guid: 7d6217ebf8640c84e9897e17478eeeb2, type: 3}
   img5: {fileID: 21300000, guid: 01624676b2c837f459fe7f41809bdbef, type: 3}
   life: 3
-  probasuper: 0
-  probakawai: 0
+  probasuper: 5
+  probakawai: 20
   randomcoordonate: 1
   randomvitesse: 1
   vitesse: 2
   delay: 10
   tempdegat: 0.1
-  Barredevie: {fileID: 5923490410192210338, guid: d84bdd752883a1c4bb85c09e7beaae66,
-    type: 3}
 --- !u!61 &-2614076682050046195
 BoxCollider2D:
   m_ObjectHideFlags: 0
