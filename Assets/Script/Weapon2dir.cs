@@ -10,6 +10,8 @@ public class Weapon2dir : MonoBehaviour
     public int rateoffire;
     public bool overheating;
     public Rigidbody2D Drugs;
+    public Rigidbody2D Superdrugs;
+    public Rigidbody2D Cible;
 
     private Vector3 aimposition;
     private int fire;
@@ -18,10 +20,9 @@ public class Weapon2dir : MonoBehaviour
     float dir()
     {
         double angle;
-
-        angle = -Atan2(aimposition.x - 8, aimposition.y + 3.8);
-
-        return ToSingle(angle);
+        angle = Mathf.Atan(aimposition.y / aimposition.x);
+        angle = angle * Mathf.Rad2Deg;
+        return ToSingle(270.0f-angle);
     }
 
     // Start is called before the first frame update
@@ -33,15 +34,26 @@ public class Weapon2dir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aimposition = Aim.transform.position;
+        aimposition = Aim.transform.localPosition;
         
-        transform.rotation = new Quaternion(0.0f, 0.0f, dir(), 1);
+        transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, -dir()));
         if (Input.GetAxis("Right fire") > 0 && fire == 0 & overheating == false)
         {
             fire = rateoffire;
             overheatingtemp = overheatingtemp + 100;
             Rigidbody2D projectile = Instantiate(Drugs, transform.position, transform.rotation);
             projectile.gameObject.tag = "Weapon2";
+            Rigidbody2D cible = Instantiate(Cible, Aim.transform.position, Aim.transform.rotation);
+            cible.gameObject.tag = "Cible2";
+        }
+        if (Input.GetButtonDown("Right supercharge") && fire == 0 && overheating == false)
+        {
+            fire = rateoffire * 2;
+            overheatingtemp = overheatingtemp + 200;
+            Rigidbody2D projectile = Instantiate(Superdrugs, transform.position, transform.rotation);
+            projectile.gameObject.tag = "SuperWeapon2";
+            Rigidbody2D cible = Instantiate(Cible, Aim.transform.position, Aim.transform.rotation);
+            cible.gameObject.tag = "Cible2";
         }
         else if (fire > 0)
         {
@@ -55,6 +67,9 @@ public class Weapon2dir : MonoBehaviour
         {
             overheating = false;
         }
-        overheatingtemp = overheatingtemp - 1;
+        if (overheatingtemp > 0)
+        {
+            overheatingtemp = overheatingtemp - 1;
+        }
     }
 }

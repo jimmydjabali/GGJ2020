@@ -10,6 +10,8 @@ public class Weapon1dir : MonoBehaviour
     public int rateoffire;
     public bool overheating;
     public Rigidbody2D Drugs;
+    public Rigidbody2D Superdrugs;
+    public Rigidbody2D Cible;
     public float speed;
 
     private Vector3 aimposition;
@@ -19,16 +21,9 @@ public class Weapon1dir : MonoBehaviour
     float dir()
     {
         double angle;
-        angle = Mathf.Asin(aimposition.x / pyth(aimposition.x - 0.6f, aimposition.y +1.679f));
+        angle = Mathf.Atan(aimposition.y / aimposition.x);
         angle = angle * Mathf.Rad2Deg;
-        return ToSingle(angle);
-    }
-    float pyth(float x, float y)
-    {
-        x = Mathf.Pow(x,2);
-        y = Mathf.Pow(y, 2);
-
-        return Mathf.Sqrt(x + y);
+        return ToSingle(270.0f + angle);
     }
 
     // Start is called before the first frame update
@@ -40,20 +35,32 @@ public class Weapon1dir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aimposition = Aim.transform.position;
-        transform.rotation = Quaternion.Euler( new Vector3 (0.0f, 0.0f, -dir()));
-        if (Input.GetAxis("Left fire") > 0 && fire == 0 & overheating == false)
+        aimposition = Aim.transform.localPosition;
+        transform.rotation = Quaternion.Euler( new Vector3 (0.0f, 0.0f, dir()));
+        if (Input.GetAxis("Left fire") > 0 && fire == 0 && overheating == false)
         {
             fire = rateoffire;
             overheatingtemp = overheatingtemp + 100;
             Rigidbody2D projectile = Instantiate(Drugs, transform.position, transform.rotation);
             projectile.gameObject.tag = "Weapon1";
+            Rigidbody2D cible = Instantiate(Cible, Aim.transform.position, Aim.transform.rotation);
+            cible.gameObject.tag = "Cible1";
 
+        }
+        if (Input.GetButtonDown("Left supercharge") && fire == 0 && overheating == false)
+        {
+            fire = rateoffire * 2;
+            overheatingtemp = overheatingtemp + 200;
+            Rigidbody2D projectile = Instantiate(Superdrugs, transform.position, transform.rotation);
+            projectile.gameObject.tag = "SuperWeapon1";
+            Rigidbody2D cible = Instantiate(Cible, Aim.transform.position, Aim.transform.rotation);
+            cible.gameObject.tag = "Cible1";
         }
         else if (fire > 0)
         {
             fire = fire - 1;
         }
+        //Debug.Log(overheatingtemp);
         if (overheatingtemp >= 1000)
         {
             overheating = true;
@@ -62,7 +69,11 @@ public class Weapon1dir : MonoBehaviour
         {
             overheating = false;
         }
-        overheatingtemp = overheatingtemp - 1;
+        if(overheatingtemp > 0)
+        {
+            overheatingtemp = overheatingtemp - 1;
+        }
+        
     }
 
 }

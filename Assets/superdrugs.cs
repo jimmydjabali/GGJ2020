@@ -2,48 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Drugs : MonoBehaviour
+public class superdrugs : MonoBehaviour
 {
-    public GameObject gellule;
+    public GameObject supergellule;
     public float speed;
     public float delay;
     public bool random_color;
-    public Sprite img1, img2, img3;
+    public Sprite img1, img2;
 
     private bool destruct = false;
     private int i = 1;
-   
+
 
     // Start is called before the first frame update
     void Start()
     {
         if (random_color)
         {
-            i = Random.Range(1, 4);
+            i = Random.Range(1, 3);
             if (i == 1)
             {
-                gellule.GetComponent<SpriteRenderer>().sprite = img1;
+                supergellule.GetComponent<SpriteRenderer>().sprite = img1;
             }
             else if (i == 2)
             {
-                gellule.GetComponent<SpriteRenderer>().sprite = img2;
-            }
-            else if (i == 3)
-            {
-                gellule.GetComponent<SpriteRenderer>().sprite = img3;
+                supergellule.GetComponent<SpriteRenderer>().sprite = img2;
             }
             else
             {
-                gellule.GetComponent<SpriteRenderer>().sprite = img1;
+                supergellule.GetComponent<SpriteRenderer>().sprite = img1;
             }
         }
 
-        gellule.GetComponent<Rigidbody2D>().velocity = transform.up * 20;
+        supergellule.GetComponent<Rigidbody2D>().velocity = transform.up * 20;
     }
 
-    private void OnCollisionEnter2D (Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Shiplife")
+        if (collision.gameObject.tag == "Shiplife")
         {
             destruct = true;
         }
@@ -57,11 +53,11 @@ public class Drugs : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag =="Cible1" && gameObject.tag == "Weapon1")
+        if (other.gameObject.tag == "Cible1" && gameObject.tag == "SuperWeapon1")
         {
             destruct = true;
         }
-        if (other.gameObject.tag == "Cible2" && gameObject.tag == "Weapon2")
+        if (other.gameObject.tag == "Cible2" && gameObject.tag == "SuperWeapon2")
         {
             destruct = true;
         }
@@ -70,7 +66,7 @@ public class Drugs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        delay = delay - 1*Time.deltaTime;
+        delay = delay - 1 * Time.deltaTime;
         if (delay <= 0 | destruct == true)
         {
             Destroy(gameObject);
