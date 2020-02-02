@@ -30,11 +30,11 @@ public class Vie : MonoBehaviour
     {
         if (compteur > 0)
         {
-            
+
             vierestante = vierestante - compteur;
             compteur = 0;
         }
-        if(vierestante >= 6)
+        if (vierestante >= 6)
         {
             vie6.SetActive(true);
             vie5.SetActive(true);
