@@ -38,7 +38,7 @@ public class Drugs : MonoBehaviour
             }
         }
 
-        gellule.GetComponent<Rigidbody2D>().velocity = transform.up * 20;
+        gellule.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
     }
 
     private void OnCollisionEnter2D (Collision2D collision)

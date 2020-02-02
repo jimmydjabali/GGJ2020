@@ -34,7 +34,7 @@ public class superdrugs : MonoBehaviour
             }
         }
 
-        supergellule.GetComponent<Rigidbody2D>().velocity = transform.up * 20;
+        supergellule.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
