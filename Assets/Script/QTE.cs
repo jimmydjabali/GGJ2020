@@ -8,6 +8,8 @@ public class QTE : MonoBehaviour
     public Sprite B;
     public Sprite X;
     public Sprite Y;
+    public Sprite right;
+    public Sprite wrong;
     public int qteSize = 5;
     public float time = 1.5f;
     public Player2 player2Obj;
@@ -17,6 +19,20 @@ public class QTE : MonoBehaviour
     private bool isQteStarted = false;
     private float remainingTime;
 
+    void FailedQte()
+    {
+        isQteStarted = false;
+        currentPosition = 0;
+        GetComponent<SpriteRenderer>().sprite = wrong;
+        player2Obj.failedQte();
+        Invoke("DisableObj", 2.0f);
+    }
+
+    void DisableObj()
+    {
+        gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -24,11 +40,7 @@ public class QTE : MonoBehaviour
 
         remainingTime -= Time.deltaTime;
         if (remainingTime < 0)
-        {
-            gameObject.SetActive(false);
-            currentPosition = 0;
-            player2Obj.failedQte();
-        }
+            FailedQte();
 
         int newCurrentPostion = currentPosition;
 
@@ -37,44 +49,28 @@ public class QTE : MonoBehaviour
             if (buttonCombination[currentPosition] == 0)
                 newCurrentPostion += 1;
             else
-            {
-                gameObject.SetActive(false);
-                currentPosition = 0;
-                player2Obj.failedQte();
-            }
+                FailedQte();
         }
         if (Input.GetButtonDown("B Button"))
         {
             if (buttonCombination[currentPosition] == 1)
                 newCurrentPostion += 1;
             else
-            {
-                gameObject.SetActive(false);
-                currentPosition = 0;
-                player2Obj.failedQte();
-            }
+                FailedQte();
         }
         if (Input.GetButtonDown("X Button"))
         {
             if (buttonCombination[currentPosition] == 2)
                 newCurrentPostion += 1;
             else
-            {
-                gameObject.SetActive(false);
-                currentPosition = 0;
-                player2Obj.failedQte();
-            }
+                FailedQte();
         }
         if (Input.GetButtonDown("Y Button"))
         {
             if (buttonCombination[currentPosition] == 3)
                 newCurrentPostion += 1;
             else
-            {
-                gameObject.SetActive(false);
-                currentPosition = 0;
-                player2Obj.failedQte();
-            }
+                FailedQte();
         }
 
         if (newCurrentPostion != currentPosition)
@@ -89,9 +85,11 @@ public class QTE : MonoBehaviour
         
         if (currentPosition > qteSize - 1)
         {
-            gameObject.SetActive(false);
+            isQteStarted = false;
             currentPosition = 0;
+            GetComponent<SpriteRenderer>().sprite = right;
             player2Obj.successQte();
+            Invoke("DisableObj", 2.0f);
         }
     }
 
@@ -113,5 +111,6 @@ public class QTE : MonoBehaviour
         gameObject.SetActive(true);
         isQteStarted = true;
         remainingTime = time;
+        CancelInvoke();
     }
 }
