@@ -12,9 +12,15 @@ public class Player2 : MonoBehaviour
     public bool wallleft;
     public float speed;
     public Rotation playerSprite;
+    public QTE qteObject;
+    public Events events;
 
     private Vector3 Xdir;
     private Vector3 Ydir;
+
+    private bool canMove = true;
+
+    private GameObject currentEvent = null;
 
     private float RadtoDeg(float angle)
     {
@@ -27,9 +33,47 @@ public class Player2 : MonoBehaviour
         
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name != "FireEvent(Clone)" && col.gameObject.name != "DropEvent(Clone)") return;
+        currentEvent = col.gameObject;
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.name != "FireEvent(Clone)" && col.gameObject.name != "DropEvent(Clone)") return;
+        currentEvent = null;
+    }
+
+    public void setCanMove(bool newCanMove)
+    {
+        canMove = newCanMove;
+        playerSprite.setMove(newCanMove);
+    }
+
+    public void successQte()
+    {
+        events.DeleteEvent(currentEvent.transform.localPosition);
+        setCanMove(true);
+        Destroy(currentEvent.gameObject);
+    }
+
+    public void failedQte()
+    {
+        setCanMove(true);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetButtonDown("A Button") && currentEvent != null)
+        {
+            setCanMove(false);
+            qteObject.startQte();
+        }
+
+        if (!canMove) return;
+
         float xAxis = Input.GetAxis("Player Xaxis");
         float yAxis = Input.GetAxis("Player Yaxis");
 

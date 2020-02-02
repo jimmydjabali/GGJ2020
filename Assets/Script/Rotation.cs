@@ -12,6 +12,8 @@ public class Rotation : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    private bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,9 @@ public class Rotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (!canMove) return;
+
         float yAxis = Input.GetAxis("Player Yaxis");
         float xAxis = Input.GetAxis("Player Xaxis");
 
@@ -38,6 +43,11 @@ public class Rotation : MonoBehaviour
             walkState = 1;
             InvokeRepeating("walk", 0.0f, 0.25f);
         }
+    }
+
+    public void setMove(bool newCanMove)
+    {
+        canMove = newCanMove;
     }
 
     void walk()
