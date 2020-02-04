@@ -7,12 +7,13 @@ public class Vie : MonoBehaviour
     public GameObject vie1, vie2, vie3, vie4, vie5, vie6;
     public int vierestante = 6;
     public bool gameover = false;
+    public GameObject gameovertitle;
 
     private int compteur = 0;
     // Start is called before the first frame update
     void Start()
     {
-
+        gameovertitle.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -98,6 +99,7 @@ public class Vie : MonoBehaviour
             vie2.SetActive(false);
             vie1.SetActive(false);
             gameover = true;
+            gameovertitle.SetActive(true);
 
         }
     }

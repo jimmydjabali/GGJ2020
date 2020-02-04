@@ -12,7 +12,6 @@ public class Weapon1dir : MonoBehaviour
     public Rigidbody2D Drugs;
     public Rigidbody2D Superdrugs;
     public Rigidbody2D Cible;
-    public float speed;
     public int nbresuper;
     public GameObject compteurgellule;
     public Sprite img1;

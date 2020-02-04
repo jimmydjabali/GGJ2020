@@ -133,6 +133,10 @@ public class Ennemis : MonoBehaviour
         {
             isOnGellule2strong = true;
         }
+        if (collision.gameObject.name == "Life (1)")
+        {
+            finish = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -167,6 +171,10 @@ public class Ennemis : MonoBehaviour
     void Update()
     {
         delay = delay - 1 * Time.deltaTime;
+        if (cooldowndegat <= 0)
+        {
+            ennemis.GetComponent<SpriteRenderer>().color = new Color(255.0f, 255.0f, 255.0f);
+        }
         if (delay <= 0 | destruct | finish)
         {
 
@@ -176,21 +184,29 @@ public class Ennemis : MonoBehaviour
         {
             life = life - 1;
             cooldowndegat = tempdegat;
+            ennemis.GetComponent<SpriteRenderer>().color = new Color(255.0f, 0.0f, 0.0f);
+            ennemis.transform.position = new Vector3(ennemis.transform.position.x, ennemis.transform.position.y + 0.2f, ennemis.transform.position.z);
         }
         else if (isOnCible2 && isOnGellule2weak && cooldowndegat <= 0)
         {
             life = life - 1;
             cooldowndegat = tempdegat;
+            ennemis.GetComponent<SpriteRenderer>().color = new Color(255.0f, 0.0f, 0.0f);
+            ennemis.transform.position = new Vector3(ennemis.transform.position.x, ennemis.transform.position.y + 0.2f, ennemis.transform.position.z);
         }
         else if (isOnCible1 && isOnGellule1strong && cooldowndegat <= 0)
         {
             life = life - 3;
             cooldowndegat = tempdegat;
+            ennemis.GetComponent<SpriteRenderer>().color = new Color(255.0f, 0.0f, 0.0f);
+            ennemis.transform.position = new Vector3(ennemis.transform.position.x, ennemis.transform.position.y + 0.2f, ennemis.transform.position.z);
         }
         else if (isOnCible2 && isOnGellule2strong && cooldowndegat <= 0)
         {
             life = life - 3;
             cooldowndegat = tempdegat;
+            ennemis.GetComponent<SpriteRenderer>().color = new Color(255.0f, 0.0f, 0.0f);
+            ennemis.transform.position = new Vector3(ennemis.transform.position.x, ennemis.transform.position.y + 0.2f, ennemis.transform.position.z);
         }
 
         if (life <= 0)
@@ -201,9 +217,6 @@ public class Ennemis : MonoBehaviour
         {
             cooldowndegat = cooldowndegat - 1 * Time.deltaTime;
         }
-        if(ennemis.gameObject.transform.position.y <= -3.0f)
-        {
-            finish = true;
-        }
+        
     }
 }
